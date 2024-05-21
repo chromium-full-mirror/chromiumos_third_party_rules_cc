@@ -14,6 +14,7 @@
 
 """Starlark rules for building C++ projects."""
 
+load("@@//bazel/cc:defs.bzl", _cc_binary = "cc_binary", _cc_test = "cc_test")
 load("//cc/private/rules_impl:cc_flags_supplier.bzl", _cc_flags_supplier = "cc_flags_supplier")
 load("//cc/private/rules_impl:compiler_flag.bzl", _compiler_flag = "compiler_flag")
 load("//cc/private/rules_impl:native.bzl", "NativeCcInfo", "NativeCcToolchainConfigInfo", "NativeDebugPackageInfo", "native_cc_common")
@@ -56,7 +57,7 @@ def cc_binary(**attrs):
     """
 
     # buildifier: disable=native-cc
-    native.cc_binary(**_add_tags(attrs, True))
+    _cc_binary(**_add_tags(attrs, True))
 
 def cc_test(**attrs):
     """Bazel cc_test rule.
@@ -68,7 +69,7 @@ def cc_test(**attrs):
     """
 
     # buildifier: disable=native-cc
-    native.cc_test(**_add_tags(attrs, True))
+    _cc_test(**_add_tags(attrs, True))
 
 def cc_library(**attrs):
     """Bazel cc_library rule.
