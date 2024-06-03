@@ -46,13 +46,12 @@ util.helper_target(
     name = "collects_files_toolchain_config",
     action_type_configs = [":compile_config"],
     args = [":c_compile_args"],
-    compiler = "gcc-4.1.1",
+    cxx_builtin_include_directories = [
+        "//tests/rule_based_toolchain/testdata:directory",
+    ],
     skip_experimental_flag_validation_for_test = True,
-    target_cpu = "k8",
-    target_libc = "glibc-2.2.2",
-    target_system_name = "local",
+    sysroot = "//tests/rule_based_toolchain/testdata:directory",
     toolchain_features = [":compile_feature"],
-    toolchain_identifier = "collects_files_toolchain",
 )
 
 util.helper_target(
